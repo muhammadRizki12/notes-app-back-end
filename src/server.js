@@ -1,20 +1,20 @@
-const Hapi = require('@hapi/hapi');
-const routes = require('./routes');
+import express from 'express';
+import cors from 'cors';
+import routes from './routes.js';
 
-const init = async () => {
-  const server = Hapi.server({
-    port: 5000,
-    host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
-    routes: {
-      cors: {
-        origin: ['*'],
-      },
-    },
-  });
+const app = express();
+const port = process.env.PORT || 3000;
+const host = process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0';
 
-  server.route(routes);
+app.use(
+  cors({
+    origin: 'https://notesapp-v1.dicodingacademy.com',
+  })
+);
 
-  await server.start();
-  console.log(`Server berjalan pada ${server.info.uri}`);
-};
-init();
+app.use(express.json());
+app.use('/', routes);
+
+app.listen(port, host, () => {
+  console.log(`Server is running at http://${host}:${port}`);
+});
