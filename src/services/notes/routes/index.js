@@ -25,6 +25,7 @@ router.get(
   getNotes,
 );
 router.get('/notes/:id', authenticateToken, getNoteById);
+
 router.put(
   '/notes/:id',
   authenticateToken,
