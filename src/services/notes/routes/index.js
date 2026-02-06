@@ -28,8 +28,8 @@ router.get('/notes/:id', authenticateToken, getNoteById);
 
 router.put(
   '/notes/:id',
-  authenticateToken,
   validate(noteUpdatePayloadSchema),
+  authenticateToken,
   editNoteById,
 );
 router.delete('/notes/:id', authenticateToken, deleteNoteById);

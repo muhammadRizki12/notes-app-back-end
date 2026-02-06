@@ -7,10 +7,6 @@ class CollaborationRepositories {
   }
 
   async addCollaboration(noteId, userId) {
-    // console.log(
-    //   '🚀 ~ CollaborationRepositories ~ addCollaboration ~ userId:',
-    //   userId,
-    // );
     const id = nanoid(16);
 
     const query = {

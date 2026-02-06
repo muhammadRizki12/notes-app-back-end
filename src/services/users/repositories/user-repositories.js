@@ -19,7 +19,7 @@ class UserRepositories {
     };
 
     const result = await this.pool.query(query);
-    return result.rows[0];
+    return result.rows[0].id;
   }
 
   async verifyNewUsername(username) {

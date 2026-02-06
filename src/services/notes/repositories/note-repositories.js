@@ -24,7 +24,8 @@ class NoteRepositories {
 
   async getNotes(owner) {
     const query = {
-      text: `SELECT notes.* FROM notes
+      text: `SELECT notes.* 
+              FROM notes
               LEFT JOIN collaborations ON collaborations.note_id = notes.id
               WHERE notes.owner = $1 OR collaborations.user_id = $1
               GROUP BY notes.id`,
@@ -102,7 +103,8 @@ class NoteRepositories {
       noteId,
       userId,
     );
-    return result.rowCount > 0;
+
+    return result;
   }
 }
 

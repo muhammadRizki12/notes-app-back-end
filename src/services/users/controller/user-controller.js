@@ -6,6 +6,7 @@ export const createUser = async (req, res, next) => {
   const { username, password, fullname } = req.body;
 
   const isUsernameExist = await UserRepositories.verifyNewUsername(username);
+
   if (isUsernameExist) {
     return next(
       new InvariantError('Gagal menambahkan user. Username sudah digunakan.'),
@@ -22,7 +23,7 @@ export const createUser = async (req, res, next) => {
     return next(new InvariantError('User gagal ditambahkan'));
   }
 
-  return response(res, 201, 'User berhasil ditambahkan', user);
+  return response(res, 201, 'User berhasil ditambahkan', { userId: user });
 };
 
 export const getUserById = async (req, res, next) => {
